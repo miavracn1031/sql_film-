@@ -5,7 +5,6 @@ SELECT DISTINCT (replacement_cost)
 FROM film
 ORDER BY replacement_cosT ASC;
 
-
 /*how many films have a replacement cost in the low group?*/
 
 SELECT 
@@ -18,7 +17,6 @@ END AS cost_range
 FROM film
 GROUP BY cost_range
 ORDER BY COUNT (*);
-
 
 /*In which catergory is the longest film and how long is it?*/
 
@@ -33,8 +31,6 @@ INNER JOIN category c
 ON fc.category_id = c.category_id
 WHERE name = 'Drama' OR name ='Sports'
 ORDER BY length DESC;
-
-
 
 /*which category (name) is the most common among the films*/
 
@@ -62,7 +58,6 @@ ON a.actor_id = f.actor_id
 GROUP BY a.actor_id, first_name, last_name
 ORDER BY first_name DESC;
 
-
 /*how many address are that?*/
 
 SELECT 
@@ -73,7 +68,6 @@ FROM address a
 LEFT JOIN customer c
 ON a.address_id = c.address_id
 WHERE c.address_id is null;
-
 
 /*which city has the most sales?*/
 
@@ -90,11 +84,7 @@ ON a.city_id = cc.city_id
 GROUP BY cc.city 
 ORDER BY SUM(p.amount)DESC;
 
-
-
 /*which country,city has the least sales?*/
-
-
 
 SELECT 
 co.country || ', ' || cc.city,
@@ -111,8 +101,6 @@ FROM payment p
 GROUP BY co.country || ', ' || cc.city
 ORDER BY SUM(p.amount)ASC;
 
-
-
 /*which staff_id makes on average more revenue per customer?*/
 
 SELECT 
@@ -127,7 +115,6 @@ FROM payment
 GROUP BY staff_id, customer_id) sub
 GROUP BY staff_id;
 
-
 /*what is the daily average of all sundays?*/
 
 SELECT 
@@ -141,10 +128,7 @@ FROM payment
 WHERE EXTRACT(dow from payment_date) = 0
 GROUP BY DATE(payment_date),EXTRACT(dow from payment_date)) SUB;
 
-
-
 /*which movies are the shortest on the list and how long are they?*/
-
 
 SELECT
 title,
@@ -213,19 +197,3 @@ ON fc.film_id = f.film_id
 LEFT JOIN category c1
 ON c1.category_id = fc.category_id
 ORDER BY name;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
